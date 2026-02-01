@@ -1,4 +1,4 @@
-## Interface: 100000
+## Interface: 120000
 ## Title: FriendXP
 ## Version: @project-version@
 ## Notes: Tracks friend's experience

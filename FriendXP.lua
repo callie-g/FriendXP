@@ -12,7 +12,6 @@ LSM:Register("background", "Wireless Incoming", "Interface\\Addons\\FriendXP\\Ar
 LSM:Register("background", "PartyXPBar", "Interface\\Addons\\FriendXP\\Artwork\\partyxpbar.tga")
 LSM:Register("border", "Thin Square 1px", "Interface\\Addons\\FriendXP\\Artwork\\Square 1px.tga")
 LSM:Register("border", "Thin Square 2px", "Interface\\Addons\\FriendXP\\Artwork\\Square 2px.tga")
-LSM:Register("background", "CircleXP", "Interface\\Addons\\FriendXP\\Artwork\\circlexp.tga")
 
 local friends = { }; -- Needs renaming
 local fonts = { };

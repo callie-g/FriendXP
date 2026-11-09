@@ -2,7 +2,7 @@
 ## Title: FriendXP
 ## Version: @project-version@
 ## Notes: Tracks friend's experience
-## Author: Bartruby of Cairne
+## Author: Callie
 ## X-Curse-Project-ID: 32260
 ## OptionalDeps: Ace3
 ## X-Embeds: Ace3

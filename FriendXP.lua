@@ -1832,7 +1832,7 @@ end
 
 function FriendXP:WorldEnter()
  LibStub("AceConfigRegistry-3.0"):RegisterOptionsTable("FriendXP", giveOptions(FriendXP))  -- I do this here instead of in OnInitialize() because values are accurate now
- self.configFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("FriendXP", "FriendXP")
+ self.configFrame, self.categoryID = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("FriendXP", "FriendXP")
  self:UnregisterEvent("PLAYER_ENTERING_WORLD")
 
  configGenerated = true
@@ -1892,8 +1892,7 @@ function FriendXP:HandleIt(input)
   return
  end
 
- InterfaceOptionsFrame_OpenToCategory(self.configFrame)
- InterfaceOptionsFrame_OpenToCategory(self.configFrame)
+ Settings.OpenToCategory(self.categoryID)
 end
 
 function FriendXP:SendXP()
@@ -2344,9 +2343,15 @@ function FriendXP:HookBlizzPartyFrames()
 	local partyXP = CreateFrame("Frame", nil, memberFrame, "BackdropTemplate")
 	partyXP:SetBackdrop({bgFile = LSM:Fetch("background", "Solid")})
    partyXP:SetBackdropColor(0,0,0,.5)
-   partyXP:SetPoint("TOPLEFT", memberFrame, "TOPLEFT", 46, -40)
-   partyXP:SetWidth(66)
-   partyXP:SetHeight(4)
+	if WOW_PROJECT_ID == WOW_PROJECT_CAMELOT then
+		partyXP:SetPoint("TOPLEFT", memberFrame, "TOPLEFT", 46, -40)
+		partyXP:SetWidth(66)
+		partyXP:SetHeight(4)
+	else
+		partyXP:SetPoint("TOPLEFT", memberFrame, "TOPLEFT", 46, -40)
+		partyXP:SetWidth(66)
+		partyXP:SetHeight(4)
+   end
    partyXP.frame = CreateFrame("Frame", nil, partyXP, BackdropTemplateMixin and "BackdropTemplate")
    partyXP.frame:SetBackdrop({bgFile = LSM:Fetch("background", "PartyXPBar"), tile = false, tileSize = 0, insets = { left = 0, right = 0, top = 0, bottom = 0 }})
    partyXP.frame:ClearAllPoints()
@@ -2455,9 +2460,15 @@ function FriendXP:HandlePlayerXP(xp, xptotal, restbonus)
   local frame = CreateFrame("Frame", nil, _G["PlayerFrame"], "BackdropTemplate")
   frame:SetBackdrop({bgFile = LSM:Fetch("statusbar", "Blizzard")})
   frame:SetBackdropColor(self.db.profile.pf.bgcolor.r, self.db.profile.pf.bgcolor.g, self.db.profile.pf.bgcolor.b, self.db.profile.pf.bgcolor.a)
-  frame:SetPoint("TOPLEFT", _G["PlayerFrame"], "TOPLEFT", 80, -28)
-  frame:SetWidth(116)
-  frame:SetHeight(12)
+  if WOW_PROJECT_ID == WOW_PROJECT_CAMELOT then
+	frame:SetPoint("TOPLEFT", _G["PlayerFrame"], "TOPLEFT", 88, -28)
+	frame:SetWidth(118)
+	frame:SetHeight(16)
+  else
+	frame:SetPoint("TOPLEFT", _G["PlayerFrame"], "TOPLEFT", 80, -28)
+	frame:SetWidth(116)
+	frame:SetHeight(12)
+  end
   frame.rest = CreateFrame("StatusBar", nil, frame)
   frame.rest:SetAllPoints(true)
   frame.rest:SetStatusBarTexture(LSM:Fetch("statusbar", "Blizzard"))
